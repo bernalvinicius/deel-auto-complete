@@ -1,7 +1,10 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, useCallback } from 'react';
 import { DataContext } from 'src/contexts';
 import { Country } from 'src/types';
 import Input from '../Input';
+import './index.css';
+
+const DEBOUNCE_DELAY = 500;
 
 const AutoComplete = () => {
   const { inputValue } = useContext(DataContext);
@@ -15,9 +18,9 @@ const AutoComplete = () => {
       const response = await fetch(
         `https://restcountries.com/v3/name/${value}`
       );
-      const data = await response.json();
 
       if (response.ok) {
+        const data = await response.json();
         setSearchResults(data);
       } else {
         setSearchResults([]);
@@ -29,18 +32,30 @@ const AutoComplete = () => {
     setIsLoading(false);
   };
 
-  const filterResults = (results: Country[]) => {
-    return results.filter((country) =>
-      country.name.common.toLowerCase().includes(inputValue)
-    );
+  const filterResults = useCallback(
+    (results: Country[]) => {
+      return results.filter((country) =>
+        country.name.common.toLowerCase().includes(inputValue)
+      );
+    },
+    [inputValue]
+  );
+
+  const highlightSearchTerm = (text: string) => {
+    const regex = new RegExp(`(${inputValue})`, 'gi');
+    return text.replace(regex, '<span class="highlight">$1</span>');
   };
 
   useEffect(() => {
-    if (!inputValue || inputValue.length < 3) {
-      setSearchResults([]);
-    } else {
-      fetchData(inputValue);
-    }
+    const timer = setTimeout(() => {
+      if (inputValue && inputValue.length >= 3) {
+        fetchData(inputValue);
+      } else {
+        setSearchResults([]);
+      }
+    }, DEBOUNCE_DELAY);
+
+    return () => clearTimeout(timer);
   }, [inputValue]);
 
   return (
@@ -52,19 +67,21 @@ const AutoComplete = () => {
 
       {isLoading ? (
         <p>Loading...</p>
-      ) : inputValue.length >= 3 ? (
-        searchResults.length > 0 ? (
-          <ul>
-            {filterResults(searchResults).map((country, index) => (
-              <li key={index}>
-                <h3>{country.name.common}</h3>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>No countries found</p>
-        )
-      ) : null}
+      ) : inputValue?.length >= 3 && searchResults.length === 0 ? (
+        <p>No countries found</p>
+      ) : (
+        <ul>
+          {filterResults(searchResults).map((country, index) => (
+            <li key={index}>
+              <h3
+                dangerouslySetInnerHTML={{
+                  __html: highlightSearchTerm(country.name.common),
+                }}
+              />
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };
