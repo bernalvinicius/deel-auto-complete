@@ -1,3 +1,3 @@
-import { DataInputContext, DataInputProvider } from './InputContext';
+import { DataContext, DataPropsProvider } from './AppContext';
 
-export { DataInputContext, DataInputProvider };
+export { DataContext, DataPropsProvider };

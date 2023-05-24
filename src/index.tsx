@@ -2,16 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { DataInputProvider } from './contexts';
+import { DataPropsProvider } from './contexts';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <DataInputProvider>
+    <DataPropsProvider>
       <App />
-    </DataInputProvider>
+    </DataPropsProvider>
   </React.StrictMode>
 );
 

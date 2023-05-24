@@ -1,15 +1,10 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { DataInputContext } from 'src/contexts';
+import { DataContext } from 'src/contexts';
+import { Country } from 'src/types';
 import Input from '../Input';
 
-interface Country {
-  name: {
-    common: string;
-  };
-}
-
 const AutoComplete = () => {
-  const { inputValue } = useContext(DataInputContext);
+  const { inputValue } = useContext(DataContext);
   const [searchResults, setSearchResults] = useState<Country[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 

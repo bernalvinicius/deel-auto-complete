@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import { DataInputContext } from 'src/contexts';
+import { DataContext } from 'src/contexts';
 
 const Input = () => {
-  const { setInputValue } = useContext(DataInputContext);
+  const { setInputValue } = useContext(DataContext);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
