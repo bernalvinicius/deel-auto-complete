@@ -9,6 +9,9 @@ const AutoComplete = () => {
   const [searchResults, setSearchResults] = useState<Country[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  /**
+   * Async function to fetch Countries API
+   */
   const fetchData = async (value: string) => {
     setIsLoading(true);
 
@@ -30,6 +33,10 @@ const AutoComplete = () => {
     setIsLoading(false);
   };
 
+  /**
+   * Function to filter countries specifically for
+   * common name
+   */
   const filterResults = useCallback(
     (results: Country[]) => {
       return results.filter((country) =>
@@ -39,8 +46,18 @@ const AutoComplete = () => {
     [inputValue]
   );
 
+  /**
+   * Function to highlight typed input
+   */
   const highlightSearchTerm = (text: string) => {
+    /**
+     * ${inputValue}: in parentheses for a global capture represents the search value entered by the user
+     * gi: (global): Matches all text; (case-insensitive): doesn't differentiate between uppercase and lowercase letters
+     */
     const regex = new RegExp(`(${inputValue})`, 'gi');
+    /**
+     * $1: represents the text value that was found in the regular expression.
+     */
     return text.replace(regex, '<span class="highlight">$1</span>');
   };
 
@@ -56,6 +73,7 @@ const AutoComplete = () => {
     <div>
       <h1>Auto Complete - Deel</h1>
       <Input />
+
       <h2>Results: </h2>
 
       {isLoading ? (
@@ -66,6 +84,10 @@ const AutoComplete = () => {
         <ul>
           {filterResults(searchResults).map((country, index) => (
             <li key={index}>
+              {/* 
+                dangerouslySetInnerHTML: dangerouslySetInnerHTML is React’s replacement for using innerHTML in the browser DOM.
+                __html: is the key of the object returned from the highlightSearchTerm() function
+              */}
               <h3
                 dangerouslySetInnerHTML={{
                   __html: highlightSearchTerm(country.name.common),
