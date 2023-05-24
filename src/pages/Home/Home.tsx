@@ -1,10 +1,13 @@
 import React from 'react';
 import { AutoComplete } from 'src/components';
+import './index.css';
 
 const Home = () => {
   return (
-    <div>
-      <AutoComplete />
+    <div className="container">
+      <div className="content">
+        <AutoComplete />
+      </div>
     </div>
   );
 };

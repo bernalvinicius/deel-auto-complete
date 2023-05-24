@@ -4,8 +4,6 @@ import { Country } from 'src/types';
 import Input from '../Input';
 import './index.css';
 
-const DEBOUNCE_DELAY = 500;
-
 const AutoComplete = () => {
   const { inputValue } = useContext(DataContext);
   const [searchResults, setSearchResults] = useState<Country[]>([]);
@@ -47,23 +45,18 @@ const AutoComplete = () => {
   };
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      if (inputValue && inputValue.length >= 3) {
-        fetchData(inputValue);
-      } else {
-        setSearchResults([]);
-      }
-    }, DEBOUNCE_DELAY);
-
-    return () => clearTimeout(timer);
+    if (inputValue && inputValue.length >= 3) {
+      fetchData(inputValue);
+    } else {
+      setSearchResults([]);
+    }
   }, [inputValue]);
 
   return (
     <div>
+      <h1>Auto Complete - Deel</h1>
       <Input />
-      <br />
-      <h3>Valor do input: </h3>
-      <br />
+      <h2>Results: </h2>
 
       {isLoading ? (
         <p>Loading...</p>

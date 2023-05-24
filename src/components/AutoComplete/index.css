@@ -1,3 +1,32 @@
+h1 {
+  padding: 40px 30px;
+  color: #1ccab0;
+  font-weight: 500;
+}
+
+h2 {
+  padding: 5px;
+  color: #1ccab0;
+  font-weight: 500;
+}
+
+ul {
+  padding: 0 15px;
+}
+
+li {
+  padding: 10px 0;
+  list-style: disc;
+  color: #fff;
+}
+
 .highlight {
-  background-color: yellow;
+  background-color: #727264;
+}
+
+p {
+  font-size: 18px;
+  color: #fff;
+  font-weight: 400;
+  padding: 15px 0;
 }
