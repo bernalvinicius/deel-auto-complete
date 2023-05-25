@@ -1,46 +1,81 @@
-# Getting Started with Create React App
+# Auto Complete - Deel
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Preview-Screens](https://i.imgur.com/gDw8Qch.png)
 
-## Available Scripts
+## Why?
 
-In the project directory, you can run:
+This project is part of the Deel selection process. It is an auto-complete component made with ReactJS and TypeScript, without using any external library.
 
-### `npm start`
+The project didn't make any imposition regarding the interface, so the layout developed with the best possible user experience.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Email-me: vini_bernal@hotmail.com
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Connect with me at [LinkedIn](https://www.linkedin.com/in/vin%C3%ADcius-bernal-19254027/)
 
-### `npm test`
+## Some Observations about this App
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**1** - As it wasn't possible to use any external library, everything was done in the most native way possible.
 
-### `npm run build`
+**2** - Using pure CSS styling, fetch for API access and Context for state management.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Functionalities
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Home Page:
+  - There is a country search input field available to the user. The search is only started when there are at least three characters typed in the field.
+  - In order to provide a pleasant user experience, all use cases are handled. When there are API responses, the list of countries matching the search is displayed. During the search, the message "Loading..." is displayed. If the search is for a country that is not included in the database used, the message "No countries found" is displayed.
+  - With this, the user has access to the information he needs with clarity and ease, providing a better use of the system.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Getting Started
 
-### `npm run eject`
+### Prerequisites
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+To run this project in the development mode, you'll need to have a basic environment to run a React App, that can be found [here.](https://reactjs.org/docs/getting-started.html)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Installing
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+**You can unzip the file that was made available or clone this repository**
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```
+$ https://github.com/bernalvinicius/deel-auto-complete.git
+$ cd -auto-complete
+```
 
-## Learn More
+**Installing Dependencies**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+$ yarn
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+_or_
+
+```
+$ npm install
+```
+
+**Running**
+
+With all dependencies installed and the environment properly configured, you can now run the app:
+
+```
+$ npm start
+```
+
+**Running Tests**
+
+```
+$ npm run test
+```
+
+_or_
+
+```
+$ yarn test
+```
+
+## Contact
+
+Email-me: vini_bernal@hotmail.com
+
+Connect with me at [LinkedIn](https://www.linkedin.com/in/vin%C3%ADcius-bernal-19254027/)
+
+Thank you!
